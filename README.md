@@ -8,4 +8,4 @@ To use this program you will need to install it with these steps:
 1. ...
 
 # References
-* https://pypdf2.readthedocs.io/en/3.x/index.html
+* https://pypdf2.readthedocs.io/en/3.x/index.html (Might need to use a different tool)

@@ -1,7 +1,11 @@
-from PyPDF2 import PdfReader # type: ignore
+import pdfquery
 
 if __name__ == '__main__':
     print("Resume Scraper for PDFs\n--------")
-    reader = PdfReader("RobertGodlewskiCodingResume202401.pdf")
-    page = reader.pages[0]
-    print(page.extract_text())
+    pdf_name = "RobertGodlewskiCodingResume202401.pdf"
+    pdf = pdfquery.PDFQuery(pdf_name)
+    pdf.load()
+    # pdf.tree.write('resume.xml', pretty_print=True)
+    data_elements = pdf.pq('LTTextLineHorizontal')
+    raw_data = [i.text for i in data_elements]
+    print(raw_data)

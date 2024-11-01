@@ -4,7 +4,9 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-pypdf2 = "*"
+pdfquery = "*"
+numpy = "*"
+pandas = "*"
 
 [dev-packages]
 

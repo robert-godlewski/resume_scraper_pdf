@@ -1,4 +1,5 @@
 import json
+import re
 import numpy
 import pdfquery
 
@@ -7,7 +8,6 @@ class ResumeParse:
     def __init__(self) -> None:
         self.data = {}
         self.iterator = 0
-        self.is_parsing = True
 
     def parse(self, pdf_name: str) -> None:
         print(f'--------\nLoading {pdf_name}.....\n---------')
@@ -22,12 +22,29 @@ class ResumeParse:
         raw_data = numpy.array([i.text for i in text_elements])
         # raw_data = numpy.array([i.text for i in text_elements], [i.url for i in link_elements])
         # print(raw_data)
-        # print(raw_data.shape)
+        print(raw_data.shape)
+        print(raw_data.shape[0])
         # print(raw_data.dtype)
         self._get_header(raw_data)
-        while self.is_parsing:
-            # edit this to loop through all needed information
-            self.is_parsing = False
+        # subjects = ['Skills', 'Work Experience', 'Education', 'Projects']
+        # while len(subjects) != 0:
+        #     s = 0
+        #     while s < len(subjects):
+        #         index = raw_data[self.iterator].find(subjects[s])
+        #         if index == -1:
+        #             self.iterator += 1
+        #         else:
+        #             if subjects[s] == 'Skills':
+        #                 self._get_skills(raw_data)
+        #             elif subjects[s] == 'Work Experience':
+        #                 self._get_work_ex(raw_data)
+        #             elif subjects[s] == 'Education':
+        #                 self._get_education(raw_data)
+        #             elif subjects[s] == 'Projects':
+        #                 self._get_projects(raw_data)
+        #             subjects.pop(s)
+        #             s -= 1
+        #         s += 1
         print(f'--------\nFinished parsing data to get: {self.data}')
 
     def export(self) -> None:
@@ -53,9 +70,17 @@ class ResumeParse:
         self.data["email"] = contacts[2]
         # Need to add in the links here
 
-    def _BLOB(self) -> None: 
-        # Add in different parsers for each needed thing in here....
-        pass
+    def _get_skills(self, raw_data: list) -> None: 
+        print("Grabbing skill information")
+
+    def _get_work_ex(self, raw_data: list) -> None: 
+        print("Grabbing work experience information")
+
+    def _get_education(self, raw_data: list) -> None:
+        print("Grabbing education infromation")
+
+    def _get_projects(self, raw_data: list) -> None: 
+        print("Grabbing project information")
 
 
 if __name__ == '__main__':
